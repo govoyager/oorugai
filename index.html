@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oorugai home page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #233A66; /* Dark background for the page */
+      color: white;
+    }
+
+    .menu-bar {
+      position: absolute;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #FFD691;
+      border-radius: 50px;
+      padding: 15px 20px;
+      width: 95%;
+      max-width: 1300px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #233A66;
+    }
+
+    .nav-items {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-items a {
+      text-decoration: none;
+      color: #233A66;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .icons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .icons i {
+      font-size: 1.5em;
+      color: #233A66;
+    }
+
+    .hamburger-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      height: 100%;
+      width: 250px;
+      background-color: #FFD691;
+      padding: 20px;
+      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: left 0.3s ease-in-out;
+      z-index: 1000;
+    }
+
+    .hamburger-menu .links {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .hamburger-menu a {
+      font-size: 1.2em;
+      color: #233A66;
+      text-decoration: none;
+    }
+
+    .hamburger-menu .footer {
+      font-size: 0.9em;
+      color: #233A66;
+      text-align: center;
+    }
+
+    .hamburger-icon {
+      display: none;
+      font-size: 2em;
+      cursor: pointer;
+      color: #233A66;
+    }
+
+    @media (max-width: 768px) {
+      .nav-items {
+        display: none;
+      }
+
+      .hamburger-icon {
+        display: block;
+      }
+
+      .menu-bar {
+        justify-content: space-between;
+      }
+
+      .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.5em;
+      }
+      .main-content {
+        flex-direction: column; /* Stack the image and text vertically */
+        align-items: center; /* Center content */
+      }
+      .main-content .text,.main-content .image {
+            width: 100%; /* Make both sections take full width */
+            padding: 10px; /* Optional: Adjust padding for smaller screens */
+      }
+
+      .main-content .image img {
+        max-height: 300px; /* Optional: Resize the image for smaller screens */
+      }
+    }
+
+    .main-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        margin-top: 100px;
+        max-width: 1300px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .main-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        padding: 20px;
+        width: 100%;
+        border: 2px solid #FFD691;
+        border-radius: 10px;
+    }
+
+    .main-content .text, .main-content .image {
+        width: 45%;
+        padding: 20px;
+        height: 100%;
+    }
+
+    .main-content .text h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+
+    .main-content .text p {
+        font-size: 1.2em;
+    }
+
+    .main-content .image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-content .image img {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    /* Product Section with a different background */
+    .product-section {
+      margin-top: 50px;
+      padding: 20px;
+      background-color: #FFD691; /* Light grey background */
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    /* Product Cards with only border and no background */
+    .product-card {
+      border: 2px solid #233A66; /* Border around the card */
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      background-color: transparent;
+    }
+
+    .product-card img {
+      width: 300px; /* Set image width */
+      height: 400px; /* Set image height */
+      border-radius: 10px;
+    }
+
+    .quantity-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 2px solid #233A66;
+      border-radius: 5px;
+      padding: 5px 10px;
+      gap: 10px;
+      margin: 10px 0;
+    }
+
+    .quantity-container button {
+      background-color: transparent;
+      color: #233A66;
+      border: none;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+
+    .quantity-container input {
+      width: 50px;
+      text-align: center;
+      font-size: 1.2em;
+      border: none;
+      background-color: transparent;
+      color: #233A66;
+    }
+
+    .add-to-cart {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .add-to-cart button {
+      background-color: #233A66;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 1.2em;
+      width: 100%;
+      text-align: center;
+    }
+
+    .add-to-cart button:hover {
+      background-color: #228B22;
+    }
+  </style>
+  <script>
+    function updatePrice(productId, pricePerUnit) {
+      const quantity = document.querySelector(`#quantity-${productId}`).value;
+      const totalPrice = document.querySelector(`#price-${productId}`);
+      totalPrice.textContent = `₹${quantity * pricePerUnit}`;
+    }
+
+    function updateQuantity(productId, change) {
+      const quantityInput = document.querySelector(`#quantity-${productId}`);
+      let newQuantity = parseInt(quantityInput.value) + change;
+      if (newQuantity > 0) {
+        quantityInput.value = newQuantity;
+        updatePrice(productId, parseInt(quantityInput.getAttribute("data-price")));
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="menu-bar">
+    <i class="hamburger-icon" onclick="toggleMenu()">☰</i>
+    <div class="logo">Oorugai.in</div>
+    <ul class="nav-items">
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">Our Story</a></li>
+      <li><a href="#">Personalize</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+    <div class="icons">
+      <i class="profile-icon">👤</i>
+      <i class="cart-icon">🛒</i>
+    </div>
+  </div>
+
+  <div class="hamburger-menu">
+    <div class="links">
+      <a href="#">Shop</a>
+      <a href="#">Our Story</a>
+      <a href="#">Personalize</a>
+      <a href="#">Contact Us</a>
+    </div>
+    <div class="footer">
+      © 2024 All rights reserved to Oorugai Private Limited
+    </div>
+  </div>
+
+  <div class="main-container">
+    <div class="main-content">
+      <div class="text">
+        <h1>Welcome to Oorugai</h1>
+        <p>Discover the finest handcrafted products from local artisans. Browse our collection and find something unique just for you.</p>
+      </div>
+      <div class="image">
+        <img src="pickle.jpg" alt="Main Image">
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Product Cards Section with a light grey background -->
+  <div class="product-section">
+    <div class="product-card">
+      <h3>Product 1</h3>
+      <img src="https://via.placeholder.com/150x200" alt="Product 1">
+      <div class="quantity-container">
+        <button onclick="updateQuantity(1, -1)">-</button>
+        <input type="number" id="quantity-1" value="1" min="1" data-price="100" onchange="updatePrice(1, 100)">
+        <button onclick="updateQuantity(1, 1)">+</button>
+      </div>
+      <div class="add-to-cart">
+        <button id="price-1">₹100</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <h3>Product 2</h3>
+      <img src="https://via.placeholder.com/150x200" alt="Product 2">
+      <div class="quantity-container">
+        <button onclick="updateQuantity(2, -1)">-</button>
+        <input type="number" id="quantity-2" value="1" min="1" data-price="200" onchange="updatePrice(2, 200)">
+        <button onclick="updateQuantity(2, 1)">+</button>
+      </div>
+      <div class="add-to-cart">
+        <button id="price-2">₹200</button>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <h3>Product 3</h3>
+      <img src="https://via.placeholder.com/150x200" alt="Product 3">
+      <div class="quantity-container">
+        <button onclick="updateQuantity(3, -1)">-</button>
+        <input type="number" id="quantity-3" value="1" min="1" data-price="300" onchange="updatePrice(3, 300)">
+        <button onclick="updateQuantity(3, 1)">+</button>
+      </div>
+      <div class="add-to-cart">
+        <button id="price-3">₹300</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
