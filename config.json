@@ -1,0 +1,64 @@
+
+{
+  "trading_config": {
+    "paper_trading": true,
+    "max_positions": 5,
+    "portfolio_size": 1000000,
+    "risk_per_trade": 0.02,
+    "max_position_size": 0.1,
+    "symbols": ["RELIANCE", "TCS", "INFY", "HDFCBANK", "ICICIBANK"],
+    "trading_hours": {
+      "start": "09:15",
+      "end": "15:30",
+      "timezone": "Asia/Kolkata"
+    }
+  },
+  "ml_config": {
+    "models": ["random_forest", "xgboost", "svm"],
+    "retraining_frequency": "daily",
+    "retraining_time": "16:00",
+    "lookback_days": 252,
+    "confidence_threshold": 0.7,
+    "feature_importance_threshold": 0.01
+  },
+  "technical_analysis": {
+    "indicators": {
+      "sma_periods": [5, 10, 20, 50],
+      "ema_periods": [12, 26, 50],
+      "rsi_period": 14,
+      "macd_fast": 12,
+      "macd_slow": 26,
+      "macd_signal": 9,
+      "bollinger_period": 20,
+      "bollinger_std": 2,
+      "atr_period": 14
+    },
+    "signal_weights": {
+      "ml_prediction": 0.4,
+      "rsi_signal": 0.2,
+      "macd_signal": 0.2,
+      "ma_signal": 0.1,
+      "volume_signal": 0.1
+    }
+  },
+  "risk_management": {
+    "stop_loss_atr_multiplier": 2.0,
+    "take_profit_ratio": 2.0,
+    "max_drawdown": 0.15,
+    "correlation_limit": 0.7,
+    "sector_concentration_limit": 0.3
+  },
+  "monitoring": {
+    "log_level": "INFO",
+    "enable_discord_alerts": false,
+    "enable_email_alerts": false,
+    "performance_check_interval": 3600,
+    "health_check_interval": 300
+  },
+  "api_config": {
+    "rate_limit_calls_per_minute": 100,
+    "request_timeout": 30,
+    "retry_attempts": 3,
+    "backoff_factor": 2
+  }
+}
