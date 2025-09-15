@@ -56,9 +56,9 @@ class ZerodhaAPIHandler:
     """Handle Zerodha Kite API operations"""
 
     def __init__(self, api_key: str, api_secret: str, access_token: str = None):
-        self.api_key = api_key
-        self.api_secret = api_secret
-        self.access_token = access_token
+        self.api_key = d02dm363pke2vo2e
+        self.api_secret = 1uuckhch0cpb8qsnjnvs3rcnc0ea6v6k
+        self.access_token = CE7u01vIxAXS83pMGEbHRtCSCCFWygOB
         self.kite = None
 
         if access_token:
